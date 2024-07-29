@@ -15,9 +15,7 @@ ENV SERVICE_NGINX_CLIENT_MAX_BODY_SIZE="50m"
 
 COPY conf/ /opt/docker/
 
-WORKDIR /var/www/html
-
-COPY . .
+COPY . /var/www/html
 
 RUN composer install --no-dev --working-dir=/var/www/html
 
