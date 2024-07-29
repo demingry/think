@@ -5,7 +5,7 @@
 
 FROM webdevops/php:8.3-alpine
 
-ENV WEB_DOCUMENT_ROOT=/var/www/html \
+ENV WEB_DOCUMENT_ROOT=/var/www/html/public \
     WEB_DOCUMENT_INDEX=index.php \
     WEB_ALIAS_DOMAIN=*.vm \
     WEB_PHP_TIMEOUT=600 \
