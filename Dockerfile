@@ -17,6 +17,8 @@ COPY conf/ /opt/docker/
 
 COPY . /var/www/html
 
+RUN chmod 777 /var/www/html -R
+
 RUN composer install --no-dev --working-dir=/var/www/html
 
 RUN set -x \
