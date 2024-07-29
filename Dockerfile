@@ -1,4 +1,4 @@
-FROM webdevops/php:8.3-alpine
+FROM webdevops/php-nginx:8.1
 
 ENV WEB_DOCUMENT_ROOT=/app \
     WEB_DOCUMENT_INDEX=index.php \
