@@ -27,4 +27,4 @@ RUN set -x \
         nginx \
     && docker-run-bootstrap
 
-EXPOSE 80 443
+EXPOSE 80
