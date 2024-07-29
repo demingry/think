@@ -1,21 +1,23 @@
-FROM richarvey/nginx-php-fpm:3.1.6
+FROM webdevops/php:8.3-alpine
 
 COPY . .
 
 RUN composer install --no-dev --working-dir=/var/www/html
 
-# Image config
-ENV SKIP_COMPOSER 1
-ENV WEBROOT /var/www/html/public
-ENV PHP_ERRORS_STDERR 1
-ENV RUN_SCRIPTS 1
-ENV REAL_IP_HEADER 1
+ENV WEB_DOCUMENT_ROOT=/app \
+    WEB_DOCUMENT_INDEX=index.php \
+    WEB_ALIAS_DOMAIN=*.vm \
+    WEB_PHP_TIMEOUT=600 \
+    WEB_PHP_SOCKET=""
+ENV WEB_PHP_SOCKET=127.0.0.1:9000
+ENV SERVICE_NGINX_CLIENT_MAX_BODY_SIZE="50m"
 
-ENV APP_ENV production
-ENV APP_DEBUG true
-ENV LOG_CHANNEL stderr
+COPY conf/ /opt/docker/
 
-# Allow composer to run as root
-ENV COMPOSER_ALLOW_SUPERUSER 1
+RUN set -x \
+    # Install nginx
+    && apk-install \
+        nginx \
+    && docker-run-bootstrap
 
-CMD ["/start.sh"]
+EXPOSE 80 443
