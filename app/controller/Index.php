@@ -3,16 +3,15 @@
 namespace app\controller;
 
 use app\BaseController;
+use think\facade\View;
+use think\facade\Request;
 
 class Index extends BaseController
 {
     public function index()
     {
-        return 'hello world!';
-    }
-
-    public function hello($name = 'ThinkPHP8')
-    {
-        return 'hello,' . $name;
+        $name = Request::param('name');
+        View::assign(['name'=>$name]);
+        return View::fetch();
     }
 }
