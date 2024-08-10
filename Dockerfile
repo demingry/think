@@ -3,7 +3,7 @@
 #    -- automatically generated  --
 #+++++++++++++++++++++++++++++++++++++++
 
-FROM webdevops/php:8.3-alpine
+FROM webdevops/php:7.4-alpine
 
 ENV WEB_DOCUMENT_ROOT=/var/www/html/public \
     WEB_DOCUMENT_INDEX=index.php \
@@ -25,6 +25,7 @@ RUN set -x \
     # Install nginx
     && apk-install \
         nginx \
-    && docker-run-bootstrap
+    && docker-run-bootstrap \
+    && docker-image-cleanup
 
 EXPOSE 80
