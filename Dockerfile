@@ -24,6 +24,7 @@ RUN composer install --no-dev --working-dir=/var/www/html
 RUN set -x \
     # Install nginx
     && apk-install \
-        nginx
+        nginx \
+        && docker-run-bootstrap
 
 EXPOSE 80
